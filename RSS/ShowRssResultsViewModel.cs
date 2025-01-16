@@ -1,4 +1,5 @@
-﻿using Reactive.Bindings;
+﻿using CodeHollow.FeedReader;
+using Reactive.Bindings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,9 +25,20 @@ namespace RSS
 
         public ShowRssResultsViewModel() 
         {
-            ShowRssCommand = CanEnter.ToReactiveCommandSlim().WithSubscribe(() => 
+            this.ShowRssCommand = this.CanEnter.ToReactiveCommandSlim().WithSubscribe(() => 
             {
-                RssValue.Value = "a";
+                var feedTask = FeedReader.ReadAsync(Url.Value);
+
+                var feed = feedTask.Result;
+
+                var feedString = "";
+
+                foreach (var item in feed.Items) 
+                {
+                    feedString += $"{item.Title}-{item.Link} {Environment.NewLine}";
+                }
+
+                this.RssValue.Value = feedString;
             }); 
         }
             
