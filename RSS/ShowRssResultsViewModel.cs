@@ -12,12 +12,23 @@ namespace RSS
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ReactivePropertySlim<string> Url {  get; set; }
+        public ReactivePropertySlim<string> Url { get; set; } = new ReactivePropertySlim<string>("");
 
-        public ReactivePropertySlim<string> SearchWord { get; set; }
+        public ReactivePropertySlim<string> SearchWord { get; set; } = new ReactivePropertySlim<string>("");
 
-        public ReactivePropertySlim<string> RssValue {  get; set; }
+        public ReactivePropertySlim<string> RssValue { get; set; } = new ReactivePropertySlim<string>("");
 
         public ReactiveCommandSlim ShowRssCommand { get; }
+
+        public ReactivePropertySlim<bool> CanEnter { get; } = new ReactivePropertySlim<bool>(true);
+
+        public ShowRssResultsViewModel() 
+        {
+            ShowRssCommand = CanEnter.ToReactiveCommandSlim().WithSubscribe(() => 
+            {
+                RssValue.Value = "a";
+            }); 
+        }
+            
     }
 }

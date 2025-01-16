@@ -17,9 +17,9 @@
         </Grid.RowDefinitions>
         <Button x:Name="ShowRssButton" Content="RSSタイトルを表示" Grid.Row="0" FontSize="34" Command="{Binding ShowRssCommand}"></Button>
         <StackPanel Margin="0,50,0,0" Grid.RowSpan="2">
-            <TextBox x:Name="EnterUrlArea" Text="{Binding Url}" Height="18"/>
-            <TextBox x:Name="EnterSearchWordArea" Text="{Binding SearchWord}" Height="18"/>
+            <TextBox x:Name="EnterUrlArea" Text="{Binding Url.Value}" Height="18"/>
+            <TextBox x:Name="EnterSearchWordArea" Text="{Binding SearchWord.Value}" Height="18"/>
         </StackPanel>
-        <TextBlock x:Name="DisplayRssArea" Text="{Binding RssValue}" Grid.Row="1" FontSize="12" Foreground="Black" Background="Azure" Margin="0,36,0,0" Grid.RowSpan="2"/>
+        <TextBlock x:Name="DisplayRssArea" Text="{Binding RssValue.Value}" Grid.Row="1" FontSize="12" Foreground="Black" Background="Azure" Margin="0,36,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>
