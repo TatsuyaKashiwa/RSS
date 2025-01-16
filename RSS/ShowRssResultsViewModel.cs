@@ -29,16 +29,39 @@ namespace RSS
             {
                 var feedTask = FeedReader.ReadAsync(Url.Value);
 
-                var feed = feedTask.Result;
-
-                var feedString = "";
-
-                foreach (var item in feed.Items) 
+                try
                 {
-                    feedString += $"{item.Title}-{item.Link} {Environment.NewLine}";
-                }
+                    //フィード情報を取得してディクショナリに登録
+                    var feed = feedTask.Result;
 
-                this.RssValue.Value = feedString;
+                    var items = feed.Items;
+
+                    FeedDictionary.RegisterFeed(items);
+
+                    var feedTitles = items
+                                    .Select(x => x.Title)
+                                    .Where(x => x.Contains(SearchWord.Value))
+                                    .ToList();
+
+                    StringBuilder sbTitles = new StringBuilder();
+
+                    foreach (var title in feedTitles)
+                    {
+                        sbTitles.Append("タイトル：");
+                        sbTitles.Append(title);
+                        sbTitles.Append("URL：");
+                        sbTitles.Append(FeedDictionary.getLink(title));
+                        sbTitles.Append(Environment.NewLine);
+                    }
+
+                    RssValue.Value = (sbTitles.Length == 0)
+                        ? "指定された文字列は見つかりませんでした"
+                        : sbTitles.ToString();
+                }
+                catch (System.AggregateException)
+                {
+                    RssValue.Value = "アドレス未入力です";
+                }
             }); 
         }
             
