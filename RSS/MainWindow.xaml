@@ -20,6 +20,6 @@
             <TextBox x:Name="EnterUrlArea" Text="{Binding Url.Value}" Height="18"/>
             <TextBox x:Name="EnterSearchWordArea" Text="{Binding SearchWord.Value}" Height="18"/>
         </StackPanel>
-        <TextBlock x:Name="DisplayRssArea" Text="{Binding RssValue.Value}" Grid.Row="1" FontSize="12" Foreground="Black" Background="Azure" Margin="0,36,0,0" Grid.RowSpan="2"/>
+        <TextBlock x:Name="DisplayRssArea" Text="{Binding RssResult.Value}" Grid.Row="1" FontSize="12" Foreground="Black" Background="Azure" Margin="0,36,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>
