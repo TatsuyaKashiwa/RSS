@@ -15,7 +15,7 @@
             <RowDefinition Height="36*"/>
             <RowDefinition Height="320*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="ShowRssButton" Content="RSSタイトルを表示" Grid.Row="0" FontSize="34" Command="{Binding ShowRssCommand}"></Button>
+        <Button x:Name="ShowRssButton" Content="RSS情報を表示" Grid.Row="0" FontSize="34" Command="{Binding ShowRssCommand}"></Button>
         <StackPanel Margin="0,50,0,0" Grid.RowSpan="2">
             <TextBox x:Name="EnterUrlArea" Text="{Binding Url.Value}" Height="18"/>
             <TextBox x:Name="EnterSearchWordArea" Text="{Binding SearchWord.Value}" Height="18"/>
